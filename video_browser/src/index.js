@@ -6,12 +6,17 @@ import YTSearch from 'youtube-api-search';
 
 const API_KEY = 'AIzaSyDCDYzzx_qTJrXXesEwt0CLPeMvMK1jcW8';
 
-YTSearch({key:API_KEY, term:'surfboards'},function(data){
-	console.log(data);
-});
+
 
 
 class App extends Component{
+	constructor(props){
+		super(props);
+		this.state = {videos:[]};
+		YTSearch({key:API_KEY, term:'surfboards'},(videos) => {
+			this.setState({videos}); //ES6: this.setState({videos:videos})
+		});
+	}
 	render(){
 		return (
 			<div>
