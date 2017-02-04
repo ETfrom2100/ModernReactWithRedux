@@ -1,7 +1,7 @@
 import {FETCH_WEATHER} from '../actions/index';
-export default function(state=null,action){
+export default function(state=[],action){
 	//console.log('action received:',action);
-	switch(type)
+	switch(action.type)
 	{
 		case FETCH_WEATHER:
 			//return a new instance of the state
