@@ -1,11 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Chart from '../components/chart';
 class WeatherList extends Component{
 	renderWeather(cityData){
 		const name = cityData.city.name
+		/***ES6 syntax for arrow functions
+		// Parentheses are optional when there's only one parameter:
+		(singleParam) => { statements }
+		singleParam => { statements }
+
+		// A function with no parameters requires parentheses:
+		() => { statements }
+		() => expression // equivalent to: () => { return expression; }
+		
+		***/
+		const temps = cityData.list.map(weather => weather.main.temp );
+		const pressures = cityData.list.map(weather =>weather.main.pressure);
+		const humidities = cityData.list.map(weather =>weather.main.humidity);
+		
+		//console.log('temps:',temps);
 		return (
 			<tr key={name}>
 				<td>{name}</td>
+				<td><Chart data={temps} color="orange" units="K" /></td>
+			    <td><Chart data={pressures} color="green" units="hPa"/></td>
+			    <td><Chart data={humidities} color="black" units="%"/></td>
 			</tr>
 		)
 	}
@@ -15,9 +34,9 @@ class WeatherList extends Component{
 				<thead>
 					<tr>
 						<th>City</th>
-						<th>Temperature</th>
-						<th>Pressure</th>
-						<th>Humidity</th>
+						<th>Temperature (K)</th>
+						<th>Pressure (hPa)</th>
+						<th>Humidity (%)</th>
 					</tr>
 				</thead>
 				<tbody>
