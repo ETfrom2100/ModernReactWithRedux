@@ -22,4 +22,4 @@ export default connect(null, mapDispatchToProps)(PostsIndex);*/
 //export default connect(null, {fetchPosts: fetchPosts})(PostsIndex);
 
 /*ES6 syntax for condensing the code above*/
-export default connect(null,{fetchPosts}){PostsIndex}
+export default connect(null,{fetchPosts})(PostsIndex);
