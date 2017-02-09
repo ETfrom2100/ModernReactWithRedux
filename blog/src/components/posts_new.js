@@ -16,6 +16,14 @@ class PostsNew extends Component{
         this.context.router.push('/');
       });
   	}*/
+	onSubmit(props){
+		this.props.createPost(props)
+		.then(()=>{
+			//blog post has been created, navigate the user to the index
+			//we navigate by calling this.context.router.push with the new path to navigate to
+			this.context.router.push('/');
+		})
+	}
 	render(){
 		//ES6 version of 
 		//const handleSubmit = this.props.handleSubmit;
@@ -27,7 +35,7 @@ class PostsNew extends Component{
 		//everyone of the properties on the title object shows up inside the input
 		//destructure the object into separate keys and values and pass it into the input
 		return (
-		<form onSubmit={handleSubmit(this.props.createPost)}>
+		<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 			<h3>Create A New Post</h3>
 			<div className={`form-group ${title.touched && title.invalid ? 'has-danger':''}`}>
 				<label>Title</label>
